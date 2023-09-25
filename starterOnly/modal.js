@@ -98,9 +98,12 @@ function formValidation() {
       errorsFounded++;
     }
   });
+  document
+  .getElementById("validationView").setAttribute('class', 'visible');
+  document
+  .getElementById("inscriptionForm").setAttribute('class', 'invisible');
+  if (errorsFounded === 1) {
 
-  if (errorsFounded === 0) {
-    console.log("success");
   } else {
     console.log("failure");
   }
