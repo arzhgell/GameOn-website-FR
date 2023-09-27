@@ -410,6 +410,9 @@ input[data-error]::after {
   margin: 0;
 }
 
+form {
+  flex-direction: column;
+}
 .copyrights {
   color: #fe142f;
   padding: 0;

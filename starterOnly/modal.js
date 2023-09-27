@@ -10,7 +10,7 @@ function editNav() {
 
 // DOM Elements
 const modalbg = document.querySelector(".bground");
-const closeBtn = document.querySelector(".close");
+const closeBtn = document.querySelector(".close-btn");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 
@@ -25,6 +25,8 @@ function launchModal() {
 
 // close modal
 function closeModal() {
+  document.getElementById("validationView").setAttribute("class", "invisible");
+  document.getElementById("inscriptionForm").setAttribute("class", "visible");
   modalbg.style.display = "none";
 }
 
@@ -65,7 +67,7 @@ function validateField(name, value) {
     isInvalid = true;
   }
 
-  if (name === "quantity" && Number(value) >= 0 && Number(value) <= 100) {
+  if (name === "quantity" && value === "") {
     isInvalid = true;
   }
 
@@ -91,6 +93,7 @@ function validateField(name, value) {
  */
 function formValidation() {
   const formAnswers = formatValuesForm(new FormData(document.reserve));
+
   let errorsFounded = 0;
 
   Object.keys(formAnswers).forEach((value, index) => {
@@ -99,12 +102,19 @@ function formValidation() {
       errorsFounded++;
     }
   });
-  document.getElementById("validationView").setAttribute("class", "visible");
-  document.getElementById("inscriptionForm").setAttribute("class", "invisible");
+  if (!Object.keys(formAnswers).includes("gcu")) {
+    document
+      .getElementById("gcu")
+      .parentElement.setAttribute("data-error-visible", true);
+    errorsFounded++;
+  }
 
-  console.log(errorsFounded);
-  if (errorsFounded === 1) {
+  if (errorsFounded === 0) {
+    document.getElementById("inscriptionForm").reset();
+    document.getElementById("validationView").setAttribute("class", "visible");
+    document
+      .getElementById("inscriptionForm")
+      .setAttribute("class", "invisible");
   } else {
-    console.log("failure");
   }
 }
