@@ -1,9 +1,10 @@
 function editNav() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
+  var x = document.getElementsByClassName("main-navbar")[0];
+
+  if (x.className === "main-navbar") {
+    x.className = "main-navbar show";
   } else {
-    x.className = "topnav";
+    x.className = "main-navbar";
   }
 }
 
@@ -98,12 +99,11 @@ function formValidation() {
       errorsFounded++;
     }
   });
-  document
-  .getElementById("validationView").setAttribute('class', 'visible');
-  document
-  .getElementById("inscriptionForm").setAttribute('class', 'invisible');
-  if (errorsFounded === 1) {
+  document.getElementById("validationView").setAttribute("class", "visible");
+  document.getElementById("inscriptionForm").setAttribute("class", "invisible");
 
+  console.log(errorsFounded);
+  if (errorsFounded === 1) {
   } else {
     console.log("failure");
   }
