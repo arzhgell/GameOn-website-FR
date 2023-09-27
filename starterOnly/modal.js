@@ -10,13 +10,13 @@ function editNav() {
 
 // DOM Elements
 const modalbg = document.querySelector(".bground");
-const closeBtn = document.querySelector(".close-btn");
+const closeBtn = document.querySelectorAll(".close-btn");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
-closeBtn.addEventListener("click", closeModal);
+closeBtn.forEach((btn) => btn.addEventListener("click", closeModal));
 
 // launch modal form
 function launchModal() {
@@ -25,6 +25,7 @@ function launchModal() {
 
 // close modal
 function closeModal() {
+  document.getElementById("inscriptionForm").reset();
   document.getElementById("validationView").setAttribute("class", "invisible");
   document.getElementById("inscriptionForm").setAttribute("class", "visible");
   modalbg.style.display = "none";
@@ -110,7 +111,6 @@ function formValidation() {
   }
 
   if (errorsFounded === 0) {
-    document.getElementById("inscriptionForm").reset();
     document.getElementById("validationView").setAttribute("class", "visible");
     document
       .getElementById("inscriptionForm")
